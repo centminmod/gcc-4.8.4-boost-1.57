@@ -1,29 +1,59 @@
 # gcc-4.8.4-boost-1.57
+====================
 Bash script and Makefile to install gcc 4.8.4 and boost 1.57 on CentOS and Mac OS X.
 
 To use it:
 
-    $ mkdir -p work/gcc
-    $ cd work/gcc
-    $ git clone https://github.com/jlinoff/gcc-4.8.4-boost-1.57.git 4.8.4
+    $ mkdir -p /opt
+    $ mkdir -p /opt/gcc484
+    $ cd /opt/gcc484
+    $ git clone https://github.com/centminmod/gcc-4.8.4-boost-1.57.git 4.8.4
     $ cd 4.8.4
     $ make
 
-To build and run the example do this:
+To clean up and remove everything you can run
 
-    #!/bin/bash
-    # Setup the environment.
-    MY_GXX_HOME="~/work/gcc/4.8.4/rtf"
-    export PATH="${MY_GXX_HOME}/bin:${PATH}"
-    export LD_LIBRARY_PATH="${MY_GXX_HOME}/lib:${MY_GXX_HOME}/lib64:${LD_LIBRARY_PATH}"
-    export LD_RUN_PATH="${MY_GXX_HOME}/lib:${MY_GXX_HOME}/lib64:${LD_LIBRARY_PATH}"
- 
-    # Compile and link.
-    g++ -O3 -std=c++11 -Wall -o example.exe example.cc
- 
-    # Run.
-    ./example.exe
+    $ make clean
 
-For more detailed information see http://joelinoff.com/blog/?p=1678.
+or
 
-Added a new test file in this version called src/LOCAL-TEST/test4.cc that has even more C++-11 constructs. It implements a simple randomized quicksort.
+    $ make clean-all
+
+what they specifically clean up
+
+    clean-all:
+        rm -rf bld src rtf archives logs
+    
+    clean:
+        rm -rf bld src rtf *~
+
+
+For more detailed information see http://joelinoff.com/blog/?p=1514.
+
+Script details
+====================
+
+This script creates 4 subdirectories:
+
+    Directory  Description
+    =========  ==================================================
+    archives   This is where the package archives are downloaded.
+    src        This is where the package source is located.
+    bld        This is where the packages are built from source.
+    rtf        This is where the packages are installed.
+
+When the build is complete you can safely remove the archives, bld and src directory trees to save disk space. In fact you can remove everything under directory /opt/gcc484/gcc/4.8.4/ except the contents of the /opt/gcc484/gcc/4.8.4/rtf directory tree to save disk space.
+
+Packages Installed
+====================
+
+* binutils    2.24    http://ftp.gnu.org/gnu/binutils
+* boost       1.57.0  http://sourceforge.net/projects/boost/files/boost
+* cloog       0.18.3  http://www.bastoul.net/cloog
+* gcc         4.8.4   http://ftp.gnu.org/gnu/gcc
+* gmp         6.0.0a   http://gmplib.org/
+* libiconv    1.14    http://ftp.gnu.org/pub/gnu/libiconv
+* mpc         1.0.2   http://www.multiprecision.org/mpc
+* mpfr        3.1.2   http://www.mpfr.org
+* ppl         1.1     http://bugseng.com/products/ppl
+

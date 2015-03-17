@@ -101,6 +101,12 @@ function get-platform-root
 # ================================================================
 function get-platform
 {
+    if [ ! -f /usr/bin/lsb_release ]; then
+        yum -y -q install redhat-lsb-core
+    fi
+    echo
+    yum -y install textinfo glibc-devel.i686 --disableexcludes=main
+    echo
     local plat=$(get-platform-root)
     case "$plat" in
         "gnu/linux")
@@ -266,6 +272,7 @@ function check-platform
         'linux-centos-6.3-x86_64'
         'linux-centos-6.4-x86_64'
         'linux-centos-6.5-x86_64'
+        'linux-centos-6.6-x86_64'
         'macos-darwin-13.2.0-x86_64'
 	'macos-darwin-13.4.0-x86_64'
     )
@@ -315,7 +322,7 @@ ARS=(
     http://www.mpfr.org/mpfr-current/mpfr-3.1.2.tar.bz2
     http://www.multiprecision.org/mpc/download/mpc-1.0.2.tar.gz
     http://bugseng.com/products/ppl/download/ftp/releases/1.1/ppl-1.1.tar.bz2
-    http://www.bastoul.net/cloog/pages/download/cloog-0.18.1.tar.gz
+    http://www.bastoul.net/cloog/pages/download/cloog-0.18.3.tar.gz
     http://ftp.gnu.org/gnu/gcc/gcc-4.8.4/gcc-4.8.4.tar.bz2
     http://ftp.gnu.org/gnu/binutils/binutils-2.24.tar.bz2
     http://sourceforge.net/projects/boost/files/boost/1.57.0/boost_1_57_0.tar.bz2

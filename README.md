@@ -42,7 +42,7 @@ This script creates 4 subdirectories:
     bld        This is where the packages are built from source.
     rtf        This is where the packages are installed.
 
-When the build is complete you can safely remove the archives, bld and src directory trees to save disk space. In fact you can remove everything under directory /opt/gcc484/gcc/4.8.4/ except the contents of the /opt/gcc484/gcc/4.8.4/rtf directory tree to save disk space.
+When the build is complete you can safely remove the archives, bld and src directory trees to save disk space. In fact you can remove everything under directory /opt/gcc484/4.8.4/ except the contents of the /opt/gcc484/4.8.4/rtf directory tree to save disk space.
 
 Packages Installed
 ====================

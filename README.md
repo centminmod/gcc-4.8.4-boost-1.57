@@ -9,6 +9,7 @@ To use it:
     $ cd /opt/gcc484
     $ git clone https://github.com/centminmod/gcc-4.8.4-boost-1.57.git 4.8.4
     $ cd 4.8.4
+    $ chmod 0700 bld.sh
     $ make
 
 To clean up and remove everything you can run
